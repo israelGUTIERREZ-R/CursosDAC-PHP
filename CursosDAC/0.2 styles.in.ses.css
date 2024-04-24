@@ -1,0 +1,218 @@
+/*//////////////////////////////////////  Zona para crear pàrticulas   /////////////////////////////////////////*/
+#particles-js {
+	height: 100vh; 
+	width: 100%;
+    position:fixed;
+    z-index: -1;
+}
+
+h3{
+    text-align: center;
+    font-family: verdana;
+    font-size: 21px;
+    background-color: white;
+    margin-left: 180pt;
+    margin-right: 180pt;
+    border-style: solid;
+    border-width: 2pt;
+    padding: 6pt;
+}
+
+/*/////////////////////////////////     Edicion de fondo de uninav    ////////////////////////////////////////*/
+.fondo-UNINAV{
+    background-color:black;
+    background-image: url(images/fpleca\ monedita.png);
+}
+/*          Color de uninav, letra, tamaño y aliniacion             */
+.coloruninav {
+    color:white;
+    font-family: verdana;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+/*          Edicion de tamaño de la imagen/escudo                   */
+.logo{
+      /* Establece la altura en automático para mantener la proporción de la imagen */
+      height: 80px;
+      /* Establece el ancho en 100 píxeles (puedes ajustar este valor según tus necesidades) */
+      width: 80px;
+      /* Agrega un margen derecho de 10 píxeles para separar la imagen del texto */
+      margin-right: 30px;
+      /*////////////////////////////////*/
+      float: left;
+}
+/*/////////////////////////////////     Edicion de fondo de Semar    ////////////////////////////////////////*/
+/*          Color de dondo de semar            */
+.fondo-SEMAR{
+    background-color:transparent;
+}
+/*          Color de letra de semar,tamaño y tipo             */
+.colorsemar {
+    color:white;
+    font-family: verdana;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 5px !important;
+
+}
+/*/////////////////////////////////     Edicion de los botones    ////////////////////////////////////////*/
+.button-container {
+    text-align: right; /* Aligns the buttons to the right */
+    margin-top: 8px;
+    margin-block-end: 8px;
+    margin-right: 1px;
+    text-decoration: none;
+    
+}
+
+.inline-button {
+    display: inline-block;
+    margin: 0 0px; /* Adds some spacing between the buttons */
+    padding: 1px 20px;
+    text-decoration: none;
+}
+/*          Color de fondo de la zona de botones             */
+.fondo-boton{
+    background-color:#50aaa8
+}
+/*/////////////////////////////////     Edicion del log   ////////////////////////////////////////*/
+.formulario{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+}
+.formulario h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+    margin-top: 20px;
+}
+.formulario form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+form .username{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+.username input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.username label{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+.username span::before{
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background:goldenrod;
+    transition: .5s;
+}
+.username input:focus~label,
+.username input:focus~label{
+    top: -5px;
+    color:goldenrod;
+}
+.username input:focus~ span::before,
+.username input:focus~ span::before{
+    width: 100%;
+}
+.recordar{
+    margin: -5px 0 20px 5px;
+    color: #50aaa8;
+    cursor: pointer;
+}
+.recordar:hover{
+    text-decoration: underline;
+}
+input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background:#50aaa8;
+    border-radius: 25px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    margin-block-end: 50px;
+}
+.registrarse{
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+}
+.registrarse a{
+    color:#50aaa8;
+    text-decoration: none;
+}
+.registrarse a:hover{
+    text-decoration: underline;
+}
+/*/////////////////////////////////     Zona del footer    ////////////////////////////////////////*/
+.ajust-foot{
+    color:white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    top: 78%;
+    grid-template-columns: repeat(3, 1fr);
+    background-color:transparent;
+    position: absolute;
+
+}
+.foot-img {
+    margin-top: 5px;
+    height: 25px;
+    width: 613px;
+    background-color: transparent;
+    filter:opacity(500%);
+  }
+  /*/////////////////////////////////     Edicion de video de fondo    ////////////////////////////////////////*/
+video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    z-index: -2;
+    filter:hue-rotate(360deg);
+}
+
+h3{
+    text-align: center;
+    font-family: verdana;
+    font-size: 21px;
+    background-color: white;
+    margin-left: 180pt;
+    margin-right: 180pt;
+    border-style: solid;
+    border-width: 2pt;
+    padding: 6pt;
+}

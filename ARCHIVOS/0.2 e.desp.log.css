@@ -1,0 +1,184 @@
+/*/////////////////////////////////     Edicion de fondo de uninav    ////////////////////////////////////////*/
+.fondo-UNINAV{
+    background-color:black;
+    background-image: url(images/fpleca\ monedita.png);
+}
+
+.loader span {
+        display: inline-block;
+        animation: dots 1s infinite;
+    }
+
+    @keyframes dots {
+        0%, 20% {
+            color: rgba(0,0,0,0);
+            text-shadow:
+                .25em 0 0 rgba(0,0,0,0),
+                .5em 0 0 rgba(0,0,0,0);}
+        40% {
+            color: #333;
+            text-shadow:
+                .25em 0 0 rgba(0,0,0,0),
+                .5em 0 0 rgba(0,0,0,0);}
+        60% {
+            text-shadow:
+                .25em 0 0 #333,
+                .5em 0 0 rgba(0,0,0,0);}
+        80%, 100% {
+            text-shadow:
+                .25em 0 0 #333,
+                .5em 0 0 #333;}
+    }
+
+.base-img{
+    /* Establece la altura en automático para mantener la proporción de la imagen */
+    height: 50px;
+    /* Establece el ancho en 100 píxeles (puedes ajustar este valor según tus necesidades) */
+    width: 50px;
+    /* Agrega un margen derecho de 10 píxeles para separar la imagen del texto */
+    margin-right: 30px;
+    /*////////////////////////////////*/
+    float: left;
+    margin-top: 5px;
+}
+/*          Color de uninav, letra, tamaño y aliniacion             */
+.coloruninav {
+    color:#e6e2e2d9;
+    font-family: verdana;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+/*          Edicion de tamaño de la imagen/escudo                   */
+.logo{
+      /* Establece la altura en automático para mantener la proporción de la imagen */
+      height: 80px;
+      /* Establece el ancho en 100 píxeles (puedes ajustar este valor según tus necesidades) */
+      width: 80px;
+      /* Agrega un margen derecho de 10 píxeles para separar la imagen del texto */
+      margin-right: 30px;
+      /*////////////////////////////////*/
+      float: left;
+}
+/*/////////////////////////////////     Edicion de fondo de Semar    ////////////////////////////////////////*/
+/*          Color de dondo de semar            */
+.fondo-SEMAR{
+    background-color:transparent;
+}
+/*          Color de letra de semar,tamaño y tipo             */
+.colorsemar {
+    color:#ffffffa5;
+    font-family: verdana;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 5px !important;
+
+}
+/*  ///////////////////////////////////////////   Edicion de menu  ///////////////////////////////////*/
+/*          Color de fondo de la zona de botones             */
+.fondo-menu{
+    background: linear-gradient(to right,#0000,#af26269e,#0000009b, #af2626a7,#000000a3, #af2626a7,#0000) !important;
+    height: 100px;
+    text-align: center;
+}
+
+/*/////////////////////////////////     Zona del footer    ////////////////////////////////////////*/
+.ajust-foot{
+    color:rgba(255, 255, 255, 0.643);
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    top: 89%;
+    grid-template-columns: repeat(3, 1fr);
+    background-color:transparent;
+    position: absolute;
+
+
+}
+.foot-img {
+    margin-top: 5px;
+    height: 25px;
+    width: 613px;
+    background-color: transparent;
+    filter:drop-shadow(10px 10px 10px rgb(253, 3, 78))
+  }
+  /*/////////////////////////////////     Edicion de video de fondo    ////////////////////////////////////////*/
+video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    z-index: -2;
+    filter:hue-rotate(110deg) !important;
+}
+/*/////////////////////////////////////////////// Select/lista desplegable ///////////////////////////////*/
+.boton-desplegable{
+    position: absolute !important;
+    background-color: transparent !important;
+    margin-top: 200px;
+    height: 40px !important;
+    border-top-color: red !important;
+    border-right-color:white!important;
+    border-bottom-color: darkred !important;
+    border-left-color: white !important;
+    width: 100% !important;
+}
+.fondo-submenu{
+    background-color: rgb(255, 0, 93)!important;
+}
+.letras-boton{
+    color: white !important;
+    text-align: center !important;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.ajust-select{
+    width: 500px !important;
+    margin-left: center !important;
+}
+/*/////////////////////////////////////////////// boton para el select ///////////////////////////////*/
+
+.letras-bot-select{
+    text-decoration: none !important;
+    background: -webkit-linear-gradient(rgb(182, 3, 75),rgb(255, 0, 187), rgb(182, 3, 75),rgb(255, 0, 187),rgb(182, 3, 75),rgb(255, 0, 187), white);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/* BOTON SELECCIONAR*/
+.btn-select {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    text-shadow: none;
+    background: rgba(229, 18, 95, 0.75);
+    color:white;
+    cursor: pointer;
+    border: 1px solid darkred!important;
+    transition: 0.5s ease;
+    user-select: none;
+    width: 300px !important;
+    height: 50px !important;
+  }
+  
+  #btn:hover,
+  :focus {
+    color: #ffffff;
+    background: rgba(229, 18, 95, 0.524);
+    border: 1px solid #ff3700;
+    text-shadow: 0 0 5px #fd4242, 0 0 10px #f50000, 0 0 20px #750c0c !important;
+    box-shadow: 0 0 5px #ff0077, 0 0 20px #ff0015, 0 0 50px #ff2600,
+      0 0 100px #ff0033;
+  }
+  /*    Boton crear base de dtaos   */
+.margen{
+    margin-top: 240px !important;
+}
+.espaciado{
+    margin-top: 15px !important;
+
+}

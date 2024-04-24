@@ -1,0 +1,369 @@
+/*/////////////////////////////////     Edicion de fondo de uninav    ////////////////////////////////////////*/
+.fondo-UNINAV{
+    background-color:steelblue;
+    background-image: url(images/fpleca\ monedita.png);
+}
+.base-img{
+    /* Establece la altura en automático para mantener la proporción de la imagen */
+    height: 50px;
+    /* Establece el ancho en 100 píxeles (puedes ajustar este valor según tus necesidades) */
+    width: 50px;
+    /* Agrega un margen derecho de 10 píxeles para separar la imagen del texto */
+    margin-right: 30px;
+    /*////////////////////////////////*/
+    float: left;
+    margin-top: 5px;
+}
+/*          Color de uninav, letra, tamaño y aliniacion             */
+.coloruninav {
+    color:#e6e2e2d9;
+    font-family: Verdana;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+/*          Edicion de tamaño de la imagen/escudo                   */
+.logo{
+      /* Establece la altura en automático para mantener la proporción de la imagen */
+      height: 80px;
+      /* Establece el ancho en 100 píxeles (puedes ajustar este valor según tus necesidades) */
+      width: 80px;
+      /* Agrega un margen derecho de 10 píxeles para separar la imagen del texto */
+      margin-right: 30px;
+      /*////////////////////////////////*/
+      float: left;
+}
+/*/////////////////////////////////     Edicion de fondo de Semar    ////////////////////////////////////////*/
+/*          Color de dondo de semar            */
+.fondo-SEMAR{
+    background-color:transparent;
+}
+/*          Color de letra de semar,tamaño y tipo             */
+.colorsemar {
+    color:#00ccff;
+    font-family: Verdana;
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 5px !important;
+
+}
+/*  ///////////////////////////////////////////   Edicion de menu  ///////////////////////////////////*/
+/*          Color de fondo de la zona de botones             */
+.fondo-menu{
+    background: linear-gradient(to right,#0000,#00e1ffcb,#00ccffd1, #0066ffc3,#00e1ffcb,#00ccffd1, #0066ffc3,#0000) !important;
+    height: 60px;
+    text-align: center;
+}
+.alinear{
+    text-align: center !important;
+}
+.fondo-opciones{
+    background-color: transparent !important;
+    height: 60px;
+}
+.img-base{
+    margin-top: 5px;
+    height: 50px;
+    width: 50px;
+}
+.alinear_izquierda{
+    left: 50%;
+}
+.estil-letras{
+    background-color: transparent;
+    border-color: aqua;
+    background: -webkit-linear-gradient(red,white,goldenrod,white,rgb(0, 229, 255));
+    font-size: 14pt;
+    font-weight: bold;
+    padding:5pt;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+ul ul li {
+    float:none;
+    text-align: left;
+    background-color: transparent;
+}
+
+.letras-menu{
+    background-color: rgb( 168, 218, 254) !important;
+    border-color: aqua !important;
+    font-size: 17pt;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+/*/////////////////////////////////     Zona del footer    ////////////////////////////////////////*/
+.ajust-foot{
+    color:white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    top: 89%;
+    grid-template-columns: repeat(3, 1fr);
+    background-color:transparent;
+    position: absolute;
+
+}
+.foot-img {
+    margin-top: 5px;
+    height: 25px;
+    width: 613px;
+    background-color: transparent;
+    filter: hue-rotate(180deg);
+    filter:drop-shadow(10px 10px 10px rgb(6, 188, 224))
+  }
+  /*/////////////////////////////////     Edicion de video de fondo    ////////////////////////////////////////*/
+video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    z-index: -2;
+    filter: grayscale(80%);
+}
+/*          Color de las letras de la tabla            */
+.fondo-bienv{
+    background-color: rgba(  168, 218, 254  , 0.5);
+}
+.fondo-forms{
+    background-color: transparent !important;
+    color: red;
+}
+.letras-form{
+    background: -webkit-linear-gradient(goldenrod,white,aqua) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-align: center !important;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: transparent !important;
+    border-top-color: aqua !important;
+    border-right-color:royalblue!important;
+    border-bottom-color:skyblue !important;
+    border-left-color: white !important;
+}
+/*          Color de letra, aliniacion, tamaño y margenes            */
+
+  /*//////////////////////tabla formato ///////////////////////////*/
+  table,th,td{
+    border: 1px outset white;
+    background: linear-gradient(to right,#0000,#00e1ffcb,#00ccffd1, #0066ffc3,#00e1ffcb,#00ccffd1, #0066ffc3,#0000,0.5) !important;
+    border-top-color: aqua !important;
+    border-right-color:royalblue!important;
+    border-bottom-color:skyblue !important;
+    border-left-color: white !important;
+    margin-left: 36%;
+}
+ .form-aling{
+    margin-top: 7% !important;
+ }
+.margen-entre{
+    margin-top:30px !important;
+}
+.margen-estil{
+    margin-top: 10px !important;
+}
+/*/////////////////////////////////////////////// Select/lista desplegable ///////////////////////////////*/
+.boton-desplegable{
+    background-color: transparent !important;
+    height: 40px !important;
+    border-top-color: aqua !important;
+    border-right-color:royalblue!important;
+    border-bottom-color:skyblue !important;
+    border-left-color: white !important;
+}
+.fondo-submenu{
+    background-color: transparent !important;
+}
+.letras-boton{
+    background: -webkit-linear-gradient(goldenrod,white,aqua) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-align: center !important;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.ajust-select{
+    margin-left: center !important;
+}
+/*/////////////////////////////////////////////// boton para el select ///////////////////////////////*/
+.boton-select {
+    background-color: transparent !important;
+    border-top-color: aqua !important;
+    border-right-color:royalblue!important;
+    border-bottom-color:skyblue !important;
+    border-left-color: white !important;
+}
+/*///////////////////////////////////// Boton guardar /////////////////////////////////*/
+.bn632-hover {
+    width: 180px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 30px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  
+  .bn632-hover:focus {
+    outline: none;
+  }
+  
+  .bn632-hover.bn18 {
+    background-image: linear-gradient(
+      to right,
+      #25aae1,
+      #40e495,
+      #30dd8a,
+      #2bb673
+    );
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+  }
+  .alin-bot{
+    left: 60% !important;
+  }
+  /*/////////////////////////////////////  zona de edicion del forms ///////////////////////////////////////*/
+
+  .fondo-archivos{
+    background-color: transparent !important;
+    color:rgba(0, 187, 255, 0.775) !important;
+  }
+  .margenes-deco{
+    border-top-color: aqua !important;
+    border-right-color:royalblue!important;
+    border-bottom-color:skyblue !important;
+    border-left-color: white !important;
+}
+.ltr-titulo-agr-user{
+    font-size: 20px !important;
+    text-align: center !important;
+    background: -webkit-linear-gradient(black,black,black,black,black) !important;
+    color:black;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+.letr-agrg-user{
+    font-size: 18px;
+    text-align: center;
+    text-align: right !important;
+    background: -webkit-linear-gradient(black,black,black,black,black) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+.ltr-rol-user{
+    font-size: 18px;
+    text-align: center;
+    text-align: right !important;
+    background: -webkit-linear-gradient(black,black,black,black,black) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+.lt-user{
+    font-size: 18px;
+    text-align: center;
+    text-align: right !important;
+    background: -webkit-linear-gradient(black,black,black,black,black) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+/*///////////////////////////////////// boton contra //////////////////////////////////////*/
+.container {
+    width: auto !important;
+  }
+  
+  .password-wrapper {
+    position: relative;
+  }
+  
+  .toggle-button {
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: unset;
+    right: 12px;
+    cursor: pointer;
+  }
+  
+  .eye-icon {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+/*////////////////////////////////////  BOTON AGREGAR USUARIO    /////////////////////////////////////////*/
+.button {
+    width: 160px;
+    height: 45px;
+    border-radius: 30em;
+    position: relative;
+    overflow: hidden;
+    color: #ffffffc0;
+    font-family: Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+    background: #0609c294;
+    border: 3px solid #00268f;
+    box-shadow: 6px 6px 12px #03eeb7, -6px -6px 12px #04dff7 , -6px -6px 12px #f3f6f7;
+    transition: 0.6s ease-in;
+  }
+  
+  .button:hover {
+    background: #000000;
+  }
+  
+  .button .two {
+    display: none;
+  }
+  
+  .button::before {
+    content: "";
+    width: 0;
+    height: 50px;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #04f7ef 0%, #000000 100%);
+    transition: 0.5s ease;
+    display: block;
+    z-index: -1;
+  }
+  
+  .button:hover::before {
+    width: 140px;
+    transition: 3s linear;
+  }
+  
+  .button:hover .one {
+    display: none;
+  }
+  
+  .button:hover .two {
+    display: inline;
+  }
+/*/////////////////////////////////  color de las letras dentro de la casillas del form ////////////////////////////////*/
+.color-lt-form{
+  color: white;
+}
