@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -84,22 +87,27 @@
 
                             </div>
                             <!-- ////////////////////////////////////////// Boton desplegable//////////////////////////////////////////////////// -->
-                            <form>
+                            <form method="post">
                                 <div class="row justify-content-center">
                                     <div class="input-group mb-3 ajust-select fondo">
 
-                                        <select class="custom-select fondo-submenu boton-desplegable letras-boton " id="inputGroupSelect02" method="post" name="combo">
+                                        <select name="combo" class="custom-select fondo-submenu boton-desplegable letras-boton " id="inputGroupSelect02">
                                             <option value="Select">Seleccione un año de consulta.</option>
                                             <?php
-                                                session_start();
-                                                $user = $_SESSION["User"];
-                                                $pas = $_SESSION["Pass"];
-                                                $_SESSION["Users"] = $user;
-                                                $conexion = new mysqli("127.0.0.1", "root", "", "cursosdac");
+                                                if(isset($_SESSION['User'])&&isset($_SESSION['Pass'])){
+                                                    $user = $_SESSION['User'];
+                                                    $pass = $_SESSION['Pass'];
+                                                    $_SESSION['Users']=$user;
+                                                }else{
+                                                    echo "<h2>USUARIO NO ESPECIFICADO</h2>";
+                                                } 
+                                                $conexion = new PDO('mysql:host=127.0.0.1;dbname=cursosdac;charset=utf8', 'root', '1234');
                                                 $query = "SHOW databases LIKE '%cursosdac%';";
                                                 $rs = $conexion->query($query);
-                                                while ($row = $rs->fetch_assoc()) {
-                                                    echo "<option value=\"" . $row['Database'] . "\">" . $row['Database'] . "</option>";
+                                                if ($rs->rowCount() > 0){
+                                                    while($row = $rs->fetch(PDO::FETCH_ASSOC)){
+                                                        echo "<option value=\"" . $row['Database (%cursosdac%)'] . "\">" . $row['Database (%cursosdac%)'] . "</option>";
+                                                    }
                                                 }
                                             ?>
                                         </select>
@@ -108,27 +116,22 @@
                                 <br><br>
                                 <!-- //////////////////////////////////////////////////  Boton para llamar a la tabla /////////////////////////////////-->
                                 <div class="row justify-content-center">
-                                    <input type="button" class="btn-select margen" id="btn" name="boton" value="SELECCIONAR" onclick="elegirBD()" />  
-                                </div>
-                                <?php
-                                    /*$opc = $_POST["combo"];
-                                    echo $opc;
-                                    $_SESSION["BaseDatos"] = $opc;
-                                    $databaseName = $_SESSION["BaseDatos"];
-                                    $_SESSION["BaseDatos"] = $opc;
-                                    $rol = $_SESSION["RolUser"];
-                                    $_SESSION["Roles"] = $rol;      
-                                    if ($rol != null && $rol == "root") {*/
-                                ?>
+                                <input type="submit" class="btn-select margen" id="btn" name="boton" value="SELECCIONAR"  onclick="elegirBD()" />   
+</div>
+                                
     <!-- //////////////////////////////////////////////////  Boton para llamar a la tabla /////////////////////////////////-->
+    <?php
+        if(isset($_SESSION['RolUser']) && $_SESSION['RolUser'] == "root"){
+
+    ?>
     <div class="row justify-content-center">
         <input type="button" class="btn-select espaciado" id="btn" name="botonC" value="CREAR BASE DE DATOS" onclick="nombreBD()" />
     </div>
     <?php
-                                    //}
+            }
     ?>
     <div class="row justify-content-center">
-        <input type="button" class="btn-select espaciado" id="btn" name="botonS" value="CERRAR SESIÓN" onclick="window.location.href = 'SesionServlet'" />
+        <input type="button" class="btn-select espaciado" id="btn" name="botonS" value="CERRAR SESIÓN" onclick="window.location.href='CerrarSesion.php';" />
     </div>
 </form>
                             <!-- //////////////////////////////////////////////////   /////////////////////////////////-->

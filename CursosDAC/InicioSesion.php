@@ -60,10 +60,10 @@
                                     <div class="button-container">
                                         <button style="background-color: black;" 
                                                 class="inline-button"><a style="color: white;text-decoration:none;" 
-                                                                 href="index.html">Pág.principal</button></a>
+                                                                 href="index.php">Pág.principal</button></a>
                                         <button style="background-color: black;" 
                                                 class="inline-button"><a style="color: white;text-decoration:none;" 
-                                                                 href="InicioSesion.html">Inicio de sesión</button></a>
+                                                                 href="InicioSesion.php">Inicio de sesión</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -71,14 +71,14 @@
                             <div class="row formulario">
                                 <h1>
                                     Inicio de sesión</h1>
-                                <form form method="post"> 
+                                <form method="post" action="IniciarSesionServlet.php"> 
                                     <div class="username">
                                         <input type="text" name="cajaUser" id="cajaUser" placeholder="Nombre de usuario" required />
                                     </div>
                                     <div class="username">
                                         <input type="password" name="cajaPassword" id="cajaPassword" placeholder="Contraseña" required />
                                     </div>
-                                    <input type="submit" name="boton" value="Iniciar" onclick="inicioSesion(event)" />
+                                    <input type="submit" name="boton" value="Iniciar"/>
                                 </form>
                             </div>
 

@@ -33,17 +33,17 @@ function elegirBD() {
 
 function inicioSesion(baseDatos) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "InicioSesionServlet", true);
+    xhr.open("POST", "InicioBaseDatos.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "BaseDatos=" + encodeURIComponent(baseDatos);
     xhr.send(data);
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
+        if (xhr.readyState === 4 && (xhr.status === 200)) {
             if (baseDatos === "Select") {
                 alert("Elige una base de datos para consultar");
             } else {
                 alert("BIENVENID@");
-                window.location.href = 'PagPrincipal.jsp?BaseDatos=' + baseDatos;
+                window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
             }
         }
     };

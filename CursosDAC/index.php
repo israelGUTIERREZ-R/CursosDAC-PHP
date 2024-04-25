@@ -51,10 +51,10 @@
                                     <div class="button-container">
                                         <button style="background-color: black;" 
                                                 class="inline-button"><a style="color: white;text-decoration:none;" 
-                                                                 href="index.html">Pág.principal</button></a>
+                                                                 href="index.php">Pág.principal</button></a>
                                         <button style="background-color: black;" 
                                                 class="inline-button"><a style="color: white;text-decoration:none;" 
-                                                                 href="InicioSesion.html">Inicio de sesión</button></a>
+                                                                 href="InicioSesion.php">Inicio de sesión</button></a>
                                     </div>
                                 </div>
                             </div>

@@ -37,7 +37,7 @@ function inicioSesion(event){
             
             
         }else{
-            alert("Error: " + xhr.responseText);
+            alert("Error: " + xhr.status.toString);
         }
         
     };
