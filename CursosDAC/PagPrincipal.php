@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Página Principal | Base de datos UNINAV</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="0.33 style.tablas.css">
+        <link rel="stylesheet" href="CSS/0.33 style.tablas.css">
         <link rel="shortcut icon" href="uninav.png">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="DinamicaVentanas.js"></script>
+        <script src="JS/DinamicaVentanas.js"></script>
     </head>
     <body>
         <!-- //////////////////////////////////////////Video de fondo //////////////////////////////////////////////////// -->
@@ -75,17 +75,23 @@
                                             </button>
 
                                             <?php
-                                                $baseDatos="";
+                                                $bd="";
                                                 if(isset($_SESSION['User'])&&isset($_SESSION['Pass'])){
                                                     $user = $_SESSION['User'];
                                                     $pass = $_SESSION['Pass'];
                                                     $rol = $_SESSION['RolUser'];
                                                     $_SESSION['Users']=$user;
+                                                    if(isset($_GET['BaseDatos'])){
+                                                        $bd=$_GET['BaseDatos'];
+                                                        $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
+                                                        $query2 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" . $user . "\" AND usuario.Password=\"" . $pass . "\";";
+                                                        $conexion->exec($query2);
+                                                    }else{
+                                                        echo "No encontrada la base de datos";
+                                                    }
+                                                    
                                                 }else{
                                                     echo "<h2>USUARIO NO ESPECIFICADO</h2>";
-                                                }
-                                                if(isset($_GET['BaseDatos'])){
-                                                    $baseDatos=$_GET['BaseDatos'];
                                                 }
                                                 
                                             ?>
@@ -133,7 +139,7 @@
                                                                     }
                                                                 ?>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="sesionC()">Cerrar Sesiòn</a></li>
+                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="window.location.href='servlets/CerrarSesion.php?BaseDatos='+sacarBD();">Cerrar Sesiòn</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -146,8 +152,7 @@
                             <!-- ////////////////////////////////////////// Boton desplegable//////////////////////////////////////////////////// -->
                             <div class="row justify-content-center">
                                 <div class="input-group mb-3 ajust-select fondo">
-                                    <select class="custom-select fondo-submenu boton-desplegable 
-                                            letras-boton " 
+                                    <select class="custom-select boton-desplegable" 
                                             id="inputGroupSelect02" name="combo" method="post">
                                         <option value="Select">Seleccione un Establecimiento Educativo Naval</option>
                                         <option value="ESEM">ESEM</option>
@@ -188,29 +193,6 @@
                     </div>
                 </div>
 
-                <?php
-                    /*String opc = request.getParameter("combo"), logout = request.getParameter("logout");
-                    String user = (String) session.getAttribute("User");
-                    String password = (String) session.getAttribute("Pass");
-
-                    System.out.println(baseDatos);
-                    session.setAttribute("Roles", rol);
-                    session.setAttribute("Users", user);
-                    session.setAttribute("escuela", opc);
-
-                    try {
-                        Class.forName("com.mysql.jdbc.Driver");
-                        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + baseDatos + "?serverTimezone=UTC", "root", "1234");
-
-                        Statement consulta2 = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                        String query3 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" + user + "\" AND usuario.Password=\"" + password + "\";";
-                        System.out.println(query3);
-                        consulta2.executeUpdate(query3);
-                    } catch (SQLException e) {
-                        System.out.println(e.toString());
-                    }*/
-
-                ?>
                 <!-- //////////////////////////////////////////Zona del footer//////////////////////////////////////////////////// -->
                 <br><br><br>
                 <footer class="pie">

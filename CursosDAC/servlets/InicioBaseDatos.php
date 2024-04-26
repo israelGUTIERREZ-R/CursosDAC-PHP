@@ -3,7 +3,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if(isset($_POST['BaseDatos'])){
             $bd = $_POST['BaseDatos'];
-            $password = $_POST['cajaPassword'];
+            echo $bd;
             $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
                 if(isset($_SESSION['User'])&&isset($_SESSION['Pass'])){
                     $user = $_SESSION['User'];
@@ -13,6 +13,8 @@
                     $conexion->exec($query2);
                     exit();
                 }
+        }else{
+            echo "No se tiene el nombre de la base de datos";
         }
 
     }

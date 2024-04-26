@@ -244,6 +244,7 @@ function sacarBD() {
     var url = new URL(url_string);
     var db = url.searchParams.get("BaseDatos");
     return db;
+    
 }
 function verTabla() {
     var db = sacarBD();
@@ -316,11 +317,11 @@ function IrMod(baseDatos) {
 }
 
 function IrInicio(baseDatos) {
-    window.location.href = 'PagPrincipal.jsp?BaseDatos=' + baseDatos;
+    window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
 }
 
 function ver(baseDatos, escuela) {
-    window.location.href = 'Tabbla.jsp?BaseDatos=' + baseDatos + '&combo=' + escuela;
+    window.location.href = 'Tabbla.php?BaseDatos=' + baseDatos + '&combo=' + escuela;
 }
 
 function agregarCurso() {

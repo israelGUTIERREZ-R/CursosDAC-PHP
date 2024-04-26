@@ -21,7 +21,7 @@
                         if ($row['EstadoUsuario'] == 0){
                             $query2 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" . $user . "\" AND usuario.Password=\"" . $password . "\";";
                             $conexion->exec($query2);
-                            header('Location:ElegirBD.php');
+                            header('Location:../ElegirBD.php');
                             exit();
                         }else {
                             echo "<br><br><h3 style=\"font-size:20pt;\">Se ha detectado un inicio de sesión en otro dispositivo. Favor de notificar o cerrar la cuenta</h3>";

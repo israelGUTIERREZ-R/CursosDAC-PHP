@@ -124,7 +124,7 @@ footer {
     font-size: 14pt;
     font-weight: bold;
     padding:5pt;
-    -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -176,7 +176,8 @@ video{
 /*/////////////////////////////////////////////// Select/lista desplegable ///////////////////////////////*/
 .boton-desplegable{
     position: absolute !important;
-    background-color: transparent !important;
+    background-color: rgba(255,255,255,0.7) !important;
+    text-align: center;
     margin-top: 200px;
     height: 40px !important;
     border-top-color: aqua !important;
@@ -185,16 +186,7 @@ video{
     border-left-color: white !important;
     width: 100% !important;
 }
-.fondo-submenu{
-    background-color: transparent !important;
-}
-.letras-boton{
-    background: -webkit-linear-gradient(goldenrod,aqua) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    text-align: center !important;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+
 .ajust-select{
     width: 500px !important;
     margin-left: center !important;
@@ -205,16 +197,16 @@ video{
     text-align: center !important; /* Aligns the buttons to the right */
     width: 141px !important;
     height: 40px !important;
-    background-color: transparent !important;
+    background-color: rgba(70, 130, 180,0.7) !important;
     border-top-color: aqua !important;
-    border-right-color:royalblue!important;
+    border-right-color:rgb(65, 105, 225)!important;
     border-bottom-color:skyblue !important;
     border-left-color: white !important;
 }
 .letras-bot-select{
     text-decoration: none !important;
-    background: -webkit-linear-gradient(white,aqua, steelblue, white, aqua,steelblue, white);
-    -webkit-background-clip: text !important;
+    background: white;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

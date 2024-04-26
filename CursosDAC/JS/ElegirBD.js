@@ -33,7 +33,7 @@ function elegirBD() {
 
 function inicioSesion(baseDatos) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "InicioBaseDatos.php", true);
+    xhr.open("POST", "servlets/InicioBaseDatos.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "BaseDatos=" + encodeURIComponent(baseDatos);
     xhr.send(data);
@@ -43,7 +43,7 @@ function inicioSesion(baseDatos) {
                 alert("Elige una base de datos para consultar");
             } else {
                 alert("BIENVENID@");
-                window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
+               window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
             }
         }
     };
@@ -61,7 +61,7 @@ function IrInicio(baseDatos) {
         alert("Elige una base de datos para consultar");
     } else {
         alert("BIENVENID@");
-        window.location.href = 'PagPrincipal.jsp?BaseDatos=' + baseDatos;
+        window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
     }
 }
 
@@ -70,7 +70,7 @@ function agregarBD(nombre) {
     console.log(nombreBD);
     document.getElementById('loadingMessage').style.display = 'block';
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "NuevaBD", true);
+    xhr.open("POST", "servlets/NuevaBD.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "nombreBD=" + encodeURIComponent(nombreBD);
     xhr.send(data);
