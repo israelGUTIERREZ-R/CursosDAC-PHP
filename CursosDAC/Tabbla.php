@@ -1,13 +1,14 @@
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<?php
+    session_start();
+    ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Página Principal | Base de datos UNINAV</title>
+        <title>Resultados | Base de datos UNINAV</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="0.33 style.tablas.css">
+        <link rel="stylesheet" href="CSS/0.444 style.tablas-second.css">
         <link rel="shortcut icon" href="uninav.png">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -17,24 +18,22 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="DinamicaVentanas.js"></script>
+        <script src="JS/DinamicaVentanas.js"></script>
     </head>
     <body>
-        <!-- //////////////////////////////////////////Video de fondo //////////////////////////////////////////////////// -->
-        <video 
+    <video 
             src="multimedia/light_-_121257 (1080p).mp4" autoplay="true" 
             muted="true" 
             loop="true" >
         </video>
-        <!-- //////////////////////////////////////////Zona de contenedores//////////////////////////////////////////////////// -->
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <div class="row">
                         <div class="col">
-                            <!-- //////////////////////////////////////////Area de UNINAV//////////////////////////////////////////////////// -->
                             <div class="row fondo-UNINAV">
-                                <h1 class="coloruninav" style="font-family: verdana;">
+                                <h1 class="coloruninav">
                                     <img src="images/escudo de la unninav.png" class="logo" 
                                          style="margin-top: 10px;">
                                     <br>
@@ -43,8 +42,6 @@
                                     Base de datos.
                                 </h1>
                             </div>
-
-                            <!-- //////////////////////////////////////////Area de SEMAR//////////////////////////////////////////////////// -->
                             <div class="row fondo-SEMAR">
                                 <h1 class="colorsemar">
                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -53,15 +50,11 @@
                                     SEMAR
                                 </h1>
                             </div>
-                            <!-- //////////////////////////////////////////Area del menu //////////////////////////////////////////////////// -->
                             <div class="row fondo-menu">
-                                <!-- /////////////////////////  Alinea el contenido del menu a la derecha //////////////////-->
                                 <form class="d-flex justify-content-center">
-                                    <!-- /////////////////////////  Poner la imagen del logo de base de datos //////////////////-->
                                     <div>
                                         <img src="images/Base de datos.png" class="img-base">
                                     </div>
-                                    <!-- /////////////////////////  Llama al menu de boostrap en linea//////////////////-->
                                     <nav class="navbar justify-content-center navbar-expand-lg bg-body-tertiary fondo-opciones">
                                         <!-- /////////////////////////   //////////////////-->
                                         <div class="container-fluid">
@@ -73,17 +66,33 @@
                                                 <span class="navbar-toggler-icon" style="color: white;"><img src="menuH.png" width="30px"/></span>
                                             </button>
 
-                                            <%
-                                                String baseDatos = (String) request.getParameter("BaseDatos");
-                                                System.out.println("BD: " + baseDatos);
-                                            %>
+                                            <?php
+                                                $bd="";
+                                                if(isset($_SESSION['User'])&&isset($_SESSION['Pass'])){
+                                                    $user = $_SESSION['User'];
+                                                    $pass = $_SESSION['Pass'];
+                                                    $rol = $_SESSION['RolUser'];
+                                                    $_SESSION['Users']=$user;
+                                                    if(isset($_GET['BaseDatos'])){
+                                                        $bd=$_GET['BaseDatos'];
+                                                        $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
+                                                        $query2 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" . $user . "\" AND usuario.Password=\"" . $pass . "\";";
+                                                        $conexion->exec($query2);
+                                                    }
+
+                                                    
+                                                }else{
+                                                    echo "<h2>USUARIO NO ESPECIFICADO</h2>";
+                                                }
+                                                
+                                            ?>
                                             <!-- ///////////////////////// Inicia el contenido del menu  //////////////////-->
                                             <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent">
                                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                                                     <li class="nav-item" >
                                                         <!-- /////////////////////////  Da colores y personalizacion a las letras de Incio//////////////////-->
                                                         <a class="nav-link active estil-letras" 
-                                                           aria-current="page" style="cursor: pointer;" onclick="verI()">Inicio</a>
+                                                           aria-current="page" onclick="verI()">Inicio</a>
                                                     </li>
                                                     <!-- /////////////////////////  Realiza el menu desplegable //////////////////-->
                                                     <li class="nav-item dropdown">
@@ -97,15 +106,15 @@
                                                         <!-- /////////////////////////  Edicion de sub menu de Datos //////////////////-->
                                                         <!-- /////////////////////////  Da colores y personalizacion a las letras //////////////////-->
                                                         <ul class="dropdown-menu letras-menu">
-                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="verM()">Modificar/Eliminar</a></li>
+                                                            <li><a class="dropdown-item" onclick="verM()">Modificar/Eliminar</a></li>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="verA()">Agregar Informacion</a></li>
+                                                            <li><a class="dropdown-item" onclick="verA()">Agregar Informacion</a></li>
                                                         </ul>
                                                     </li>
                                                     <!-- /////////////////////////  Realiza el menu desplegable de Usuario//////////////////-->
                                                     <li class="nav-item dropdown">
                                                         <!-- /////////////////////////  Da colores y personalizacion a las letras //////////////////-->
-                                                        <a class="nav-link dropdown-toggle estil-letras"
+                                                        <a class="nav-link dropdown-toggle estil-letras" href="#" 
                                                            role="button" data-bs-toggle="dropdown"
                                                            aria-expanded="false">
                                                             Usuario
@@ -115,14 +124,13 @@
                                                         <ul class="dropdown-menu letras-menu">
                                                             <li><a class="dropdown-item" style="cursor: pointer;" onclick="verP()">Cuenta</a></li>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                                <%
-                                                                    String rol = (String) session.getAttribute("RolUser");
-                                                                    if (rol.equals("root")) {
-                                                                        out.println("<li><a class=\"dropdown-item\" style=\"cursor: pointer;\" onclick=\"verAP()\" color:white;>Agregar Usuario</a></li>");
+                                                                <?php
+                                                                if(isset($_SESSION['RolUser']) && $_SESSION['RolUser'] == "root") {
+                                                                        echo "<li><a class=\"dropdown-item\" style=\"cursor: pointer;\" onclick=\"verAP()\" color:white;>Agregar Usuario</a></li>";
                                                                     }
-                                                                %>
+                                                                ?>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="sesionC()">Cerrar Sesiòn</a></li>
+                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="window.location.href='servlets/CerrarSesion.php?BaseDatos='+sacarBD();">Cerrar Sesiòn</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -135,8 +143,7 @@
                             <!-- ////////////////////////////////////////// Boton desplegable//////////////////////////////////////////////////// -->
                             <div class="row justify-content-center">
                                 <div class="input-group mb-3 ajust-select fondo">
-                                    <select class="custom-select fondo-submenu boton-desplegable 
-                                            letras-boton " 
+                                <select class="custom-select boton-desplegable" 
                                             id="inputGroupSelect02" name="combo" method="post">
                                         <option value="Select">Seleccione un Establecimiento Educativo Naval</option>
                                         <option value="ESEM">ESEM</option>
@@ -168,39 +175,91 @@
                             </div>
                             <!-- //////////////////////////////////////////////////  Boton para llamar a la tabla /////////////////////////////////-->
                             <div class="row justify-content-center">
-                                <button 
-                                    class="boton-select"><a class="letras-bot-select" 
-                                                        onclick="verTabla()">Seleccionar</button></a>
+                                <button class="boton-select"><a class="letras-bot-select" onclick="verTabla()">Seleccionar</a></button>
                             </div>
                             <!-- //////////////////////////////////////////////////   /////////////////////////////////-->
+                            <br><br><div class="row justify-content-center"><center>
+                                <table class="table-hover fondo-tabla">
+                                    <?php
+                                         if(isset($_GET['combo'])){
+                                            $opc=$_GET['combo'];
+                                            $totalElementosIngresados = 0;
+                                            $totalElementosEgresados = 0;
+                                                $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
+                                                $query2 = "SELECT curso.NombreCurso AS \"Nombre de Curso\", periodo.FechaInicio AS \"Fecha de inicio\", "
+                                                . "periodo.FechaFin AS \"Fecha de finalización\", periodo.Ingresos AS \"Cantidad Ingresos\", "
+                                                . "periodo.Egresos AS \"Cantidad Egresos\", curso.Registro AS \"Registro\" FROM escuela JOIN curso ON "
+                                                . "escuela.Siglas=curso.Escuela JOIN periodo ON curso.IDCurso=periodo.IDCurso WHERE escuela.Siglas=\""
+                                                . $_GET['combo'] . "\" ORDER BY MONTH(fechaInicio);";
+                                                $nombre=$conexion->query("SELECT nombre FROM escuela WHERE siglas=\"" . $opc . "\";");
+                                                $rs=$conexion->query($query2);
+                                                echo "<div class=\"table-responsive\">";
+                                                while($row = $nombre->fetch(PDO::FETCH_ASSOC)){
+                                                    echo "<center><h3 style=\"background-color: rgba(168, 218, 254,0.25); color: white;\">" . ($opc . " - " . $row['nombre']) . "</h3></center>";
+                                                }
+                                                echo "<tr>";
+                                                $columnCount = $rs->columnCount();
+                                                for ($i = 0; $i <= $columnCount; $i++){
+                                                    $columnMeta = $rs->getColumnMeta($i);
+                                                    if (is_array($columnMeta) && isset($columnMeta['name'])){
+                                                        $columnName = $columnMeta['name'];
+                                                         echo "<th>".$columnName."</th>";
+                                                    }
+                                                   
+                                                }
+                                                echo "</tr>";
+                                                $j = 1;
+                                                while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
+                                                    echo "<tr>";
+                                                    for ($i = 0; $i < $columnCount; $i++) {
+                                                        $columnName = $rsmd->getColumnMeta($i)['name'];
+                                                        $columnValue = $row[$columnName];
+                                                        if (is_array($columnMeta) && isset($columnMeta['name'])){
+                                                            if ($columnName != "Registro") {
+                                                                echo "<td>$columnValue</td>";
+                                                            } else {
+                                                                $EEN = $escuela;
+                                                                echo "<td><a href=\"pdf_Registro?EEN=$EEN&curso={$row['Nombre de Curso']}&BaseDatos=$baseDatos\" style=\"color: rgb(10, 37, 67);\">Registro.pdf</a></td>";
+                                                            }
+                                                        }
+                                                        
+                                                    }
+                                                    echo "</tr>";
+
+                                    ?>
+                                    <td>
+                                        <button type="button" id="boton<?php echo $j?>" onclick="clic('<?php $row['Cantidad Ingresos']?>', '<?php $row['Cantidad Egresos']?>',
+                        '<?php $row['Nombre de Curso']?>', '<?php $row['Fecha de inicio']?>', '<?php $row['Fecha de finalización']?>')" style="font-size: 12pt;">
+                                            <b>Ver gráficas</b>
+                                        </button>
+                                    </td>
+                                    <?php
+                                            echo  "</tr>";
+                                            $totalElementosIngresados+=$row['Cantidad Ingresos'];
+                                            $totalElementosEgresados+=$row['Cantidad Egresos'];
+                                            $j++;
+                                        }
+                                    }
+
+                                        ?>
+                                    
+                                </table>
+                                    <div style="font-family: verdana; font-size: 14pt; color:white">
+                                        <br><p style="font-family: verdana; font-size: 14pt;"></p><center><b>CANTIDAD DE CURSOS: </b><?php echo ($j - 1)?></center>
+                                        <p id="numeros"><center><b>CANTIDAD DE ELEMENTOS INGRESADOS: </b><?php echo $totalElementosIngresados?></center></p>
+                                        <p id="numeros"><center><b>CANTIDAD DE ELEMENTOS EGRESADOS: </b><?php echo $totalElementosEgresados?></center></p>
+                                    </div>
+                                    <?php
+                                            echo "</div>";
+                                    ?>
+
+                                    </center>      
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
-                <%
-                    String opc = request.getParameter("combo"), logout = request.getParameter("logout");
-                    String user = (String) session.getAttribute("User");
-                    String password = (String) session.getAttribute("Pass");
-
-                    System.out.println(baseDatos);
-                    session.setAttribute("Roles", rol);
-                    session.setAttribute("Users", user);
-                    session.setAttribute("escuela", opc);
-
-                    try {
-                        Class.forName("com.mysql.jdbc.Driver");
-                        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + baseDatos + "?serverTimezone=UTC", "root", "1234");
-
-                        Statement consulta2 = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                        String query3 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" + user + "\" AND usuario.Password=\"" + password + "\";";
-                        System.out.println(query3);
-                        consulta2.executeUpdate(query3);
-                    } catch (SQLException e) {
-                        System.out.println(e.toString());
-                    }
-
-                %>
-                <!-- //////////////////////////////////////////Zona del footer//////////////////////////////////////////////////// -->
+                
                 <br><br><br>
                 <footer class="pie">
                 <div class="conteiner-fluid bg-ligth text-center p-3 ajust-foot">
@@ -210,6 +269,6 @@
                 </div>
                 </footer>
             </div>
-
+        </div>
     </body>
 </html>

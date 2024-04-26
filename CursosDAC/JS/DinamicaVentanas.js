@@ -249,7 +249,23 @@ function sacarBD() {
 function verTabla() {
     var db = sacarBD();
     var esc = document.getElementsByName("combo")[0].value;
-    ver(db, esc);
+    if(esc=="Select"){
+        verI();
+    }else{
+        ver(db, esc);
+    }
+    
+}
+
+function verTabla2() {
+    var db = sacarBD();
+    var esc = document.getElementsByName("combo")[0].value;
+    if(esc=="Select"){
+        
+    }else{
+        ver2(db, esc);
+    }
+    
 }
 
 function verI() {
@@ -291,7 +307,7 @@ function IrCerrarSesion(baseDatos) {
 
     xhr.onload = function () {
         if (xhr.status === 200) {
-            window.location.href = 'InicioSesion.jsp';
+            window.location.href = 'InicioSesion.php';
         } else {
             alert("Error: " + xhr.statusText);
         }
@@ -301,19 +317,19 @@ function IrCerrarSesion(baseDatos) {
 }
 
 function IrAgrP(baseDatos) {
-    window.location.href = 'AgregarUsuario.jsp?BaseDatos=' + baseDatos;
+    window.location.href = 'AgregarUsuario.php?BaseDatos=' + baseDatos;
 }
 
 function IrVerP(baseDatos) {
-    window.location.href = 'VerPerfil.jsp?BaseDatos=' + baseDatos;
+    window.location.href = 'VerPerfil.php?BaseDatos=' + baseDatos;
 }
 
 function IrAgr(baseDatos) {
-    window.location.href = 'AgregarInformacionVP.jsp?BaseDatos=' + baseDatos;
+    window.location.href = 'AgregarInformacionVP.php?BaseDatos=' + baseDatos;
 }
 
 function IrMod(baseDatos) {
-    window.location.href = 'ModificarInformacion.jsp?BaseDatos=' + baseDatos;
+    window.location.href = 'ModificarInformacion.php?BaseDatos=' + baseDatos;
 }
 
 function IrInicio(baseDatos) {
@@ -324,14 +340,18 @@ function ver(baseDatos, escuela) {
     window.location.href = 'Tabbla.php?BaseDatos=' + baseDatos + '&combo=' + escuela;
 }
 
+function ver2(baseDatos, escuela) {
+    window.location.href = 'ModificarInformacion.php?BaseDatos=' + baseDatos + '&combo=' + escuela;
+}
+
 function agregarCurso() {
     var db = sacarBD();
-    window.location.href = 'AgregarCurso.jsp?BaseDatos=' + db;
+    window.location.href = 'AgregarCurso.php?BaseDatos=' + db;
 }
 
 function agregarPeriodo() {
     var db = sacarBD();
-    window.location.href = 'AgregarPeriodo.jsp?BaseDatos=' + db;
+    window.location.href = 'AgregarPeriodo.php?BaseDatos=' + db;
 }
 
 
