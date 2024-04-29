@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $selectedOption = isset($_REQUEST['combo']) ? $_REQUEST['combo'] : 'Select';
     ?>
 <!DOCTYPE html>
 <html>
@@ -169,40 +170,39 @@
                                     <div class="input-group mb-3 ajust-select fondo">
 
                                         <select class="custom-select boton-desplegable" id="inputGroupSelect02" name="combo" method="post">
-                                            <option value="Select">Seleccione un Establecimiento Educativo Naval</option>
-                                            <option value="ESEM">ESEM</option>
-                                            <option value="IOG">IOG</option>
-                                            <option value="CECANOP">CECANOP</option>
-                                            <option value="CECANOG">CECANOG</option>
-                                            <option value="CECACIPA">CECACIPA</option>
-                                            <option value="CECACIGO">CECACIGO</option>
-                                            <option value="ESBUSREB">ESBUSREB</option>
-                                            <option value="ESCMAQNAV">ESCMAQNAV</option>
-                                            <option value="CENCAVELA">CENCAVELA</option>
-                                            <option value="CESISCCAM">CESISCCAM</option>
-                                            <option value="CENCASANT">CENCASANT</option>
-                                            <option value="CECAISMAR">CECAISMAR</option>
-                                            <option value="CENCAPETRIV">CENCAPETRIV</option>
-                                            <option value="ESMECAVNAV">ESMECAVNAV</option>
-                                            <option value="CADAVAM">CADAVAM</option>
-                                            <option value="CENCAEIM">CENCAEIM</option>
-                                            <option value="CENAREG-ANF">CENAREG-ANF</option>
-                                            <option value="CENAREG-3">CENAREG-3</option>
-                                            <option value="CENAREG-4">CENAREG-4</option>
-                                            <option value="CENAREG-6">CENAREG-6</option>
-                                            <option value="CENAREG-8">CENAREG-8</option>
-                                            <option value="CENAREG-9">CENAREG-9</option>
-                                            <option value="CENAREG-10">CENAREG-10</option>
-                                            <option value="CENAREG-16">CENAREG-16</option>
+                                            <option value="Select" <?php echo ($selectedOption == 'Select') ? 'selected' : ''; ?>>Seleccione un Establecimiento Educativo Naval</option>
+                                            <option value="ESEM" <?php echo ($selectedOption == 'ESEM') ? 'selected' : ''; ?>>ESEM</option>
+                                            <option value="IOG" <?php echo ($selectedOption == 'IOG') ? 'selected' : ''; ?>>IOG</option>
+                                            <option value="CECANOP" <?php echo ($selectedOption == 'CECANOP') ? 'selected' : ''; ?>>CECANOP</option>
+                                            <option value="CECANOG" <?php echo ($selectedOption == 'CECANOG') ? 'selected' : ''; ?>>CECANOG</option>
+                                            <option value="CECACIPA" <?php echo ($selectedOption == 'CECACIPA') ? 'selected' : ''; ?>>CECACIPA</option>
+                                            <option value="CECACIGO" <?php echo ($selectedOption == 'CECACIGO') ? 'selected' : ''; ?>>CECACIGO</option>
+                                            <option value="ESBUSREB" <?php echo ($selectedOption == 'ESBUSREB') ? 'selected' : ''; ?>>ESBUSREB</option>
+                                            <option value="ESCMAQNAV" <?php echo ($selectedOption == 'ESCMAQNAV') ? 'selected' : ''; ?>>ESCMAQNAV</option>
+                                            <option value="CENCAVELA" <?php echo ($selectedOption == 'CENCAVELA') ? 'selected' : ''; ?>>CENCAVELA</option>
+                                            <option value="CESISCCAM" <?php echo ($selectedOption == 'CESISCCAM') ? 'selected' : ''; ?>>CESISCCAM</option>
+                                            <option value="CENCASANT" <?php echo ($selectedOption == 'CENCASANT') ? 'selected' : ''; ?>>CENCASANT</option>
+                                            <option value="CECAISMAR" <?php echo ($selectedOption == 'CECAISMAR') ? 'selected' : ''; ?>>CECAISMAR</option>
+                                            <option value="CENCAPETRIV" <?php echo ($selectedOption == 'CENCAPETRIV') ? 'selected' : ''; ?>>CENCAPETRIV</option>
+                                            <option value="ESMECAVNAV" <?php echo ($selectedOption == 'ESMECAVNAV') ? 'selected' : ''; ?>>ESMECAVNAV</option>
+                                            <option value="CADAVAM" <?php echo ($selectedOption == 'CADAVAM') ? 'selected' : ''; ?>>CADAVAM</option>
+                                            <option value="CENCAEIM" <?php echo ($selectedOption == 'CENCAEIM') ? 'selected' : ''; ?>>CENCAEIM</option>
+                                            <option value="CENAREG-ANF" <?php echo ($selectedOption == 'CENAREG-ANF') ? 'selected' : ''; ?>>CENAREG-ANF</option>
+                                            <option value="CENAREG-3" <?php echo ($selectedOption == 'CENAREG-3') ? 'selected' : ''; ?>>CENAREG-3</option>
+                                            <option value="CENAREG-4" <?php echo ($selectedOption == 'CENAREG-4') ? 'selected' : ''; ?>>CENAREG-4</option>
+                                            <option value="CENAREG-6" <?php echo ($selectedOption == 'CENAREG-6') ? 'selected' : ''; ?>>CENAREG-6</option>
+                                            <option value="CENAREG-8" <?php echo ($selectedOption == 'CENAREG-8') ? 'selected' : ''; ?>>CENAREG-8</option>
+                                            <option value="CENAREG-9" <?php echo ($selectedOption == 'CENAREG-9') ? 'selected' : ''; ?>>CENAREG-9</option>
+                                            <option value="CENAREG-10" <?php echo ($selectedOption == 'CENAREG-10') ? 'selected' : ''; ?>>CENAREG-10</option>
+                                            <option value="CENAREG-16" <?php echo ($selectedOption == 'CENAREG-16') ? 'selected' : ''; ?>>CENAREG-16</option>
                                         </select>
 
                                     </div>
                                 </div>
 
                                 <div class="row justify-content-center">
-                                    <button 
-                                        class="btn btn-outline-info boton-select" ><a class="letras-bot-select" 
-                                                                                  name="boton" onclick="caja1()">Seleccionar</button></a>
+                                    <button class="btn btn-outline-info boton-select" ><a class="letras-bot-select" name="boton">
+                                        Seleccionar</a></button>
 
                                 </div>
                             </form>
@@ -212,20 +212,20 @@
                     <!-- //////////////////////////////////////////////////  Boton para llamar a la tabla /////////////////////////////////-->
 
                     <?php
-                        if(isset($_GET['combo'])){
-                            $opc = $_GET['combo'];
+                        if(isset($_REQUEST['combo'])){
+                            $opc = $_REQUEST['combo'];
                             if ($opc != null) {
                                 if ($opc!=("Select")) {
-                                    if(isset($_GET['combo'])){
-                                        $opc=$_GET['combo'];
+                                    if(isset($_REQUEST['combo'])){
+                                        $opc=$_REQUEST['combo'];
+                                        $bd=$_GET['BaseDatos'];
                                         $totalElementosIngresados = 0;
                                         $totalElementosEgresados = 0;
-                                            $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
+                                            $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$_GET['BaseDatos'].';charset=utf8', 'root', '1234');
                                             $query2 = "SELECT curso.NombreCurso AS \"Nombre de Curso\", periodo.FechaInicio AS \"Fecha de inicio\", "
                                             . "periodo.FechaFin AS \"Fecha de finalización\", periodo.Ingresos AS \"Cantidad Ingresos\", "
-                                            . "periodo.Egresos AS \"Cantidad Egresos\", curso.Registro AS \"Registro\" FROM escuela JOIN curso ON "
-                                            . "escuela.Siglas=curso.Escuela JOIN periodo ON curso.IDCurso=periodo.IDCurso WHERE escuela.Siglas=\""
-                                            . $_GET['combo'] . "\" ORDER BY MONTH(fechaInicio);";
+                                            . "periodo.Egresos AS \"Cantidad Egresos\",periodo.NumeroPeriodo AS \"Número de Periodo\" FROM escuela JOIN curso ON escuela.Siglas=curso.Escuela "
+                                            . "JOIN periodo ON curso.IDCurso=periodo.IDCurso WHERE escuela.Siglas=\"". $_REQUEST['combo'] . "\" ORDER BY MONTH(fechaInicio);";
                                             $rs=$conexion->query($query2);
                                             $columnCount = $rs->columnCount();
                                         echo "<form method=\"POST\">";
@@ -241,29 +241,34 @@
                                         }
                                         echo "</tr>";
                                         while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
-                                            $j = 1;
+                                            echo "<tr>";
                                             for ($i = 0; $i < $columnCount; $i++) {
-                                                $columnName = $rsmd->getColumnMeta($i)['name'];
+                                                $columnName = $rs->getColumnMeta($i)['name'];
                                                 $columnValue = $row[$columnName];
-                                                if (is_array($columnMeta) && isset($columnMeta['name'])){
-                                                    if ($i == 1) {
+                                                if (isset($columnName)){
+                                                    if ($i ==0) {
                                                         echo "<td><input name='caja" . $i . "' value='" . $columnValue . "' onload='caja1(" . $j . ")' disabled></td>";
-                                                    } elseif ($i == 2) {
+                                                    } elseif ($i == 1) {
                                                         echo "<td><input name='caja" . $i . "' value='" . $columnValue . "' onload='caja1(" . $j . ")' disabled></td>";
-                                                    } elseif ($i == 6) {
+                                                    } elseif ($i == 5) {
                                                         echo "<td><input name='caja" . $i . "' value='" . $columnValue . "' onload='caja1(" . $j . ")' disabled></td>";
                                                     } else {
                                                         echo "<td><input name='caja" . $i . "' value='" . $columnValue . "'></td>";
                                                     }
                                                 }
                                                 
+                                                
                                             }
+                                            ?>
+                                                 <td><input type="button" onclick="modificarBaseDeDatos(<?php echo $j ?>);" id="boton<?php echo $j ?>" style="font-size: 12pt;" value="Modificar"></input></td>
+                    <td><input type="button" onclick="eliminarBaseDeDatos(<?php echo $j ?>);" id="boton<?php echo $j ?>" style="font-size: 12pt;" value="Eliminar"></input></td>
+
+
+                                                <?php
                         }
                         
                     ?>
-                    <td><input type="button" onclick="modificarBaseDeDatos(<?php echo $j ?>);" id="boton<%=j%>" style="font-size: 12pt;" value="Modificar"></input></td>
-                    <td><input type="button" onclick="eliminarBaseDeDatos(<?php echo $j ?>);" id="boton<%=j%>" style="font-size: 12pt;" value="Eliminar"></input></td>
-
+                   
 
                     <?php
                                             echo"</tr>";

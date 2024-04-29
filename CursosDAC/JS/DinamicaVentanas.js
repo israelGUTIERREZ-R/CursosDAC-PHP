@@ -2,7 +2,7 @@ function clic(ing, egr, curso, fIn, fFn) {
     var width = 1000;
     var height = 600;
     var chartWindow = window.open('', '_blank', 'width=' + width + ',height=' + height);
-    var chartUrl = 'VerGrafica?ingresos=' + ing + '&egresos=' + egr + '&curso=' + curso + '&fechaI=' + fIn + '&fechaF=' + fFn;
+    var chartUrl = './servlets/VerGrafica.php?ingresos=' + ing + '&egresos=' + egr + '&curso=' + curso + '&fechaI=' + fIn + '&fechaF=' + fFn;
     chartWindow.location.href = chartUrl;
 }
 

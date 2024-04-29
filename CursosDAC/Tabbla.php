@@ -212,27 +212,31 @@
                                                 while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
                                                     echo "<tr>";
                                                     for ($i = 0; $i < $columnCount; $i++) {
-                                                        $columnName = $rsmd->getColumnMeta($i)['name'];
+                                                        $columnName = $rs->getColumnMeta($i)['name'];
                                                         $columnValue = $row[$columnName];
-                                                        if (is_array($columnMeta) && isset($columnMeta['name'])){
+                                                        if (isset($columnName)){
                                                             if ($columnName != "Registro") {
                                                                 echo "<td>$columnValue</td>";
                                                             } else {
-                                                                $EEN = $escuela;
-                                                                echo "<td><a href=\"pdf_Registro?EEN=$EEN&curso={$row['Nombre de Curso']}&BaseDatos=$baseDatos\" style=\"color: rgb(10, 37, 67);\">Registro.pdf</a></td>";
+                                                                $EEN = $_GET['combo'];
+                                                                $baseDatos = $_GET['BaseDatos'];
+                                                                echo "<td><a href=\"./servlets/pdf_Registro.php?EEN=$EEN&curso={$row['Nombre de Curso']}&BaseDatos=$baseDatos\" style=\"color: rgb(10, 37, 67);\">Registro.pdf</a></td>";
                                                             }
                                                         }
                                                         
                                                     }
-                                                    echo "</tr>";
-
-                                    ?>
-                                    <td>
-                                        <button type="button" id="boton<?php echo $j?>" onclick="clic('<?php $row['Cantidad Ingresos']?>', '<?php $row['Cantidad Egresos']?>',
-                        '<?php $row['Nombre de Curso']?>', '<?php $row['Fecha de inicio']?>', '<?php $row['Fecha de finalización']?>')" style="font-size: 12pt;">
+                                                    ?>
+                                                    <td>
+                                        <button type="button" id="boton<?php echo $j?>" onclick="clic('<?php echo $row['Cantidad Ingresos']?>', '<?php echo $row['Cantidad Egresos']?>',
+                        '<?php echo $row['Nombre de Curso']?>', '<?php echo $row['Fecha de inicio']?>', '<?php echo $row['Fecha de finalización']?>')" style="font-size: 12pt;">
                                             <b>Ver gráficas</b>
                                         </button>
                                     </td>
+
+                                                    <?php
+                                                    echo "</tr>";
+
+                                    ?>
                                     <?php
                                             echo  "</tr>";
                                             $totalElementosIngresados+=$row['Cantidad Ingresos'];
