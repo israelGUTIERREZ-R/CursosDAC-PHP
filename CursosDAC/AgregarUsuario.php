@@ -235,9 +235,16 @@
                 function IrInicio(baseDatos) {
                     window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
                 }
-
-
             </script>
+
+<script>
+            window.addEventListener('beforeunload', function (event) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'actualizar_estado_usuario.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send();
+            });
+        </script>
         </div>
 
     </body>

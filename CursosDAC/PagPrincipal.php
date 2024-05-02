@@ -203,6 +203,13 @@
                 </div>
                 </footer>
             </div>
-
+            <script>
+            window.addEventListener('unload', function (event) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'actualizar_estado_usuario.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send();
+            });
+        </script>
     </body>
 </html>
