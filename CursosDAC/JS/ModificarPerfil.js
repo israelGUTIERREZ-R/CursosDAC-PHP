@@ -14,7 +14,7 @@ function modificarNombreUser(){
      console.log(nombreUser+" "+rolUser+" "+contraUser);
      document.getElementById('loadingMessage').style.display = 'block';
       var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ModificarUser", true);
+    xhr.open("POST", "./servlets/ModificarUser.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "USER=" + encodeURIComponent(nombreUser) +
             "&ROL=" + encodeURIComponent(rolUser) +
@@ -41,7 +41,7 @@ function modificarPasswordUser(){
      console.log(nombreUser+" "+rolUser+" "+contraUser);
      document.getElementById('loadingMessage').style.display = 'block';
       var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ModificarPassword", true);
+    xhr.open("POST", "./servlets/ModificarPassword.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "USER=" + encodeURIComponent(nombreUser) +
             "&ROL=" + encodeURIComponent(rolUser) +
@@ -68,7 +68,7 @@ function agregarUser(){
      console.log(nombreUser+" "+rolUser+" "+contraUser);
      document.getElementById('loadingMessage').style.display = 'block';
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "AgregarUser", true);
+    xhr.open("POST", "./servlets/AgregarUser.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "USER=" + encodeURIComponent(nombreUser) +
             "&ROL=" + encodeURIComponent(rolUser) +

@@ -57,7 +57,7 @@
         SQL;
         $conexion->exec($query5);
         $query6=<<<SQL
-            CREATE TABLE `usuario` (`IDUsuario` int NOT NULL,
+            CREATE TABLE `usuario` (`IDUsuario` INT NOT NULL AUTO_INCREMENT,
                     `NombreUsuario` varchar(45) NOT NULL,
                     `Password` varchar(45) NOT NULL,
                     `Rol` varchar(45) NOT NULL,

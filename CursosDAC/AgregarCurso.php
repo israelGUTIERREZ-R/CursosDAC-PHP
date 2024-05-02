@@ -1,4 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<?php
+    session_start();
+    ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,17 +8,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Agregar Cursos | Base de datos UNINAV</title>
         <link rel="shortcut icon" href="uninav.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="7.1 style.agreg.curso.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="CSS/7.1 style.agreg.curso.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="CSS/bootstrap4.min.css">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="DinamicaVentanas.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha512-Ua/7Woz9L5O0cwB/aYexmgoaD7lw3dWe9FvXejVdgqu71gRog3oJgjSWQR55fwWx+WKuk8cl7UwA1RS6QCadFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="JS/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="JS/DinamicaVentanas.js"></script>
     </head>
     <body>
         <div id="loadingMessage" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(35, 35, 35,0.8);
@@ -69,6 +71,7 @@
                                         <!-- /////////////////////////   //////////////////-->
                                         <div class="container-fluid">
                                             <!-- /////////////////////////  Zona del boton tipo dispositivos moviles  //////////////////-->
+                                            <!-- /////////////////////////  Zona del boton tipo dispositivos moviles  //////////////////-->
                                             <button class="navbar-toggler" type="button" style="color: aqua; text-align: center;"
                                                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
                                                     aria-controls="navbarSupportedContent" 
@@ -76,10 +79,26 @@
                                                 <span class="navbar-toggler-icon" style="color: white;"><img src="menuH.png" width="30px"/></span>
                                             </button>
 
-                                            <%
-                                                String baseDatos = (String) request.getParameter("BaseDatos");
-                                                System.out.println("BD: " + baseDatos);
-                                            %>
+                                            <?php
+                                                $bd="";
+                                                if(isset($_SESSION['User'])&&isset($_SESSION['Pass'])){
+                                                    $user = $_SESSION['User'];
+                                                    $pass = $_SESSION['Pass'];
+                                                    $rol = $_SESSION['RolUser'];
+                                                    $_SESSION['Users']=$user;
+                                                    if(isset($_GET['BaseDatos'])){
+                                                        $bd=$_GET['BaseDatos'];
+                                                        $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
+                                                        $query2 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" . $user . "\" AND usuario.Password=\"" . $pass . "\";";
+                                                        $conexion->exec($query2);
+                                                    }
+
+                                                    
+                                                }else{
+                                                    echo "<h2>USUARIO NO ESPECIFICADO</h2>";
+                                                }
+                                                
+                                            ?>
                                             <!-- ///////////////////////// Inicia el contenido del menu  //////////////////-->
                                             <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent">
                                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
@@ -118,14 +137,13 @@
                                                         <ul class="dropdown-menu letras-menu">
                                                             <li><a class="dropdown-item" style="cursor: pointer;" onclick="verP()">Cuenta</a></li>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                                <%
-                                                                    String rol = (String) session.getAttribute("RolUser");
-                                                                    if (rol.equals("root")) {
-                                                                        out.println("<li><a class=\"dropdown-item\" style=\"cursor: pointer;\" onclick=\"verAP()\" color:white;>Agregar Usuario</a></li>");
+                                                                <?php
+                                                                if(isset($_SESSION['RolUser']) && $_SESSION['RolUser'] == "root") {
+                                                                        echo "<li><a class=\"dropdown-item\" style=\"cursor: pointer;\" onclick=\"verAP()\" color:white;>Agregar Usuario</a></li>";
                                                                     }
-                                                                %>
+                                                                ?>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="sesionC()">Cerrar Sesiòn</a></li>
+                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="window.location.href='servlets/CerrarSesion.php?BaseDatos='+sacarBD();">Cerrar Sesiòn</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>

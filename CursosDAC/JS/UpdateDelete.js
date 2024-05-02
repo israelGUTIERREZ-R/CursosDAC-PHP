@@ -23,7 +23,7 @@ function verI() {
 }
 
 function IrInicio(baseDatos) {
-    window.location.href = 'index.jsp?BaseDatos=' + baseDatos;
+    window.location.href = 'PagPrincipal.php?BaseDatos=' + baseDatos;
 }
 
 
@@ -36,9 +36,11 @@ function modificarBaseDeDatos(row) {
     var numP = document.getElementsByName("caja6")[row - 1].value;
     var baseDatos = sacarBD();
 
+    console.log(nombreCurso +" "+ fechaInicio+" "+fechaFin+" "+ingresos+" "+egresos+" "+numP+" "+baseDatos);
+
     // Enviar datos al servidor mediante AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ModificarInformacionServlet2", true);
+    xhr.open("POST", "servlets/ModificarInformacionServlet2.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "caja1=" + encodeURIComponent(nombreCurso) +
             "&caja2=" + encodeURIComponent(fechaInicio) +
@@ -73,7 +75,7 @@ function eliminarBaseDeDatos(row) {
     document.getElementById('loadingMessage').style.display = 'block';
     // Enviar datos al servidor mediante AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "EliminarInformacionServlet", true);
+    xhr.open("POST", "servlets/EliminarInformacionServlet.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var data = "caja1=" + encodeURIComponent(nombreCurso) +
             "&caja2=" + encodeURIComponent(fechaInicio) +
@@ -90,7 +92,7 @@ function eliminarBaseDeDatos(row) {
             console.log(xhr.responseText);  // Log the response
             if (xhr.status === 200) {
                 document.getElementById('loadingMessage').style.display = 'none';
-                alert("ELIMINACION DE PERIODO Y CURSO REALIZADA");
+                alert("ELIMINACION DE PERIODO REALIZADA");
                 verI();
             } else {
                 alert("ERROR");

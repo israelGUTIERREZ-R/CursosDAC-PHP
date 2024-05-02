@@ -1,5 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*" %>
+<?php
+    session_start();
+    $selectedOption = isset($_REQUEST['combo']) ? $_REQUEST['combo'] : 'Select';
+    ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,18 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Agregar Periodos | Base de datos UNINAV</title>
         <link rel="shortcut icon" href="uninav.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="8.1 style.agreg.per.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="CSS/8.1 style.agreg.per.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="CSS/bootstrap4.min.css">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="DinamicaVentanas.js"></script>
-        <script src="ModificarPerfil.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha512-Ua/7Woz9L5O0cwB/aYexmgoaD7lw3dWe9FvXejVdgqu71gRog3oJgjSWQR55fwWx+WKuk8cl7UwA1RS6QCadFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="JS/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="JS/DinamicaVentanas.js"></script>
+        <script src="JS/ModificarPerfil.js"></script>
     </head>
     <body>
         <div id="loadingMessage" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(35, 35, 35,0.8);
@@ -72,17 +74,34 @@
                                         <!-- /////////////////////////   //////////////////-->
                                         <div class="container-fluid">
                                             <!-- /////////////////////////  Zona del boton tipo dispositivos moviles  //////////////////-->
-                                            <button class="navbar-toggler" type="button" style="color: aqua; text-align: center;"
+                                             <!-- /////////////////////////  Zona del boton tipo dispositivos moviles  //////////////////-->
+                                             <button class="navbar-toggler" type="button" style="color: aqua; text-align: center;"
                                                     data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
                                                     aria-controls="navbarSupportedContent" 
                                                     aria-expanded="false" aria-label="Toggle navigation">
                                                 <span class="navbar-toggler-icon" style="color: white;"><img src="menuH.png" width="30px"/></span>
                                             </button>
 
-                                            <%
-                                                String baseDatos = (String) request.getParameter("BaseDatos");
-                                                System.out.println("BD: " + baseDatos);
-                                            %>
+                                            <?php
+                                                $bd="";
+                                                if(isset($_SESSION['User'])&&isset($_SESSION['Pass'])){
+                                                    $user = $_SESSION['User'];
+                                                    $pass = $_SESSION['Pass'];
+                                                    $rol = $_SESSION['RolUser'];
+                                                    $_SESSION['Users']=$user;
+                                                    if(isset($_GET['BaseDatos'])){
+                                                        $bd=$_GET['BaseDatos'];
+                                                        $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$bd.';charset=utf8', 'root', '1234');
+                                                        $query2 = "UPDATE usuario SET usuario.EstadoUsuario=1 WHERE usuario.nombreUsuario=\"" . $user . "\" AND usuario.Password=\"" . $pass . "\";";
+                                                        $conexion->exec($query2);
+                                                    }
+
+                                                    
+                                                }else{
+                                                    echo "<h2>USUARIO NO ESPECIFICADO</h2>";
+                                                }
+                                                
+                                            ?>
                                             <!-- ///////////////////////// Inicia el contenido del menu  //////////////////-->
                                             <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent">
                                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
@@ -121,14 +140,13 @@
                                                         <ul class="dropdown-menu letras-menu">
                                                             <li><a class="dropdown-item" style="cursor: pointer;" onclick="verP()">Cuenta</a></li>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                                <%
-                                                                    String rol = (String) session.getAttribute("RolUser");
-                                                                    if (rol.equals("root")) {
-                                                                        out.println("<li><a class=\"dropdown-item\" style=\"cursor: pointer;\" onclick=\"verAP()\" color:white;>Agregar Usuario</a></li>");
+                                                                <?php
+                                                                if(isset($_SESSION['RolUser']) && $_SESSION['RolUser'] == "root") {
+                                                                        echo "<li><a class=\"dropdown-item\" style=\"cursor: pointer;\" onclick=\"verAP()\" color:white;>Agregar Usuario</a></li>";
                                                                     }
-                                                                %>
+                                                                ?>
                                                             <li><hr style="border-color: aqua;" class="dropdown-divider"></li>
-                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="sesionC()">Cerrar Sesiòn</a></li>
+                                                            <li><a class="dropdown-item" style="cursor: pointer;" onclick="window.location.href='servlets/CerrarSesion.php?BaseDatos='+sacarBD();">Cerrar Sesiòn</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -142,22 +160,33 @@
                             <div class="row justify-content-center">
                                 <div class="input-group mb-3 ajust-select">
                                     <form method="POST">
-                                        <select class="custom-select fondo-submenu boton-desplegable 
-                                                letras-boton " 
-                                                id="inputGroupSelect02" name="combo" method="post">
-                                            <option value="Select">Seleccione un Establecimiento Educativo Naval</option>
-                                            <%
-                                                String opc = request.getParameter("combo");
-                                                System.out.println(opc);
-                                                String[] options = {"ESEM", "IOG", "CECANOP", "CECANOG", "CECACIPA", "CECACIGO",
-                                                    "ESBUSREB", "ESCMAQNAV", "CENCAVELA", "CESISCCAM", "CENCASANT",
-                                                    "CECAISMAR", "CENCAPETRIV", "ESMECAVNAV", "CADAVAM", "CENCAEIM",
-                                                    "CENAREG-ANF", "CENAREG-3", "CENAREG-4", "CENAREG-6", "CENAREG-8",
-                                                    "CENAREG-9", "CENAREG-10", "CENAREG-16"};
-                                                for (String option : options) {
-                                                    out.println("<option value=\"" + option + "\"" + (option.equals(opc) ? " selected" : "") + ">" + option + "</option>");
-                                                }
-                                            %>
+                                    <select class="custom-select boton-desplegable" 
+                                            id="inputGroupSelect02" name="combo" method="post">
+                                                <option value="Select" <?php echo ($selectedOption == 'Select') ? 'selected' : ''; ?>>Seleccione un Establecimiento Educativo Naval</option>
+                                            <option value="ESEM" <?php echo ($selectedOption == 'ESEM') ? 'selected' : ''; ?>>ESEM</option>
+                                            <option value="IOG" <?php echo ($selectedOption == 'IOG') ? 'selected' : ''; ?>>IOG</option>
+                                            <option value="CECANOP" <?php echo ($selectedOption == 'CECANOP') ? 'selected' : ''; ?>>CECANOP</option>
+                                            <option value="CECANOG" <?php echo ($selectedOption == 'CECANOG') ? 'selected' : ''; ?>>CECANOG</option>
+                                            <option value="CECACIPA" <?php echo ($selectedOption == 'CECACIPA') ? 'selected' : ''; ?>>CECACIPA</option>
+                                            <option value="CECACIGO" <?php echo ($selectedOption == 'CECACIGO') ? 'selected' : ''; ?>>CECACIGO</option>
+                                            <option value="ESBUSREB" <?php echo ($selectedOption == 'ESBUSREB') ? 'selected' : ''; ?>>ESBUSREB</option>
+                                            <option value="ESCMAQNAV" <?php echo ($selectedOption == 'ESCMAQNAV') ? 'selected' : ''; ?>>ESCMAQNAV</option>
+                                            <option value="CENCAVELA" <?php echo ($selectedOption == 'CENCAVELA') ? 'selected' : ''; ?>>CENCAVELA</option>
+                                            <option value="CESISCCAM" <?php echo ($selectedOption == 'CESISCCAM') ? 'selected' : ''; ?>>CESISCCAM</option>
+                                            <option value="CENCASANT" <?php echo ($selectedOption == 'CENCASANT') ? 'selected' : ''; ?>>CENCASANT</option>
+                                            <option value="CECAISMAR" <?php echo ($selectedOption == 'CECAISMAR') ? 'selected' : ''; ?>>CECAISMAR</option>
+                                            <option value="CENCAPETRIV" <?php echo ($selectedOption == 'CENCAPETRIV') ? 'selected' : ''; ?>>CENCAPETRIV</option>
+                                            <option value="ESMECAVNAV" <?php echo ($selectedOption == 'ESMECAVNAV') ? 'selected' : ''; ?>>ESMECAVNAV</option>
+                                            <option value="CADAVAM" <?php echo ($selectedOption == 'CADAVAM') ? 'selected' : ''; ?>>CADAVAM</option>
+                                            <option value="CENCAEIM" <?php echo ($selectedOption == 'CENCAEIM') ? 'selected' : ''; ?>>CENCAEIM</option>
+                                            <option value="CENAREG-ANF" <?php echo ($selectedOption == 'CENAREG-ANF') ? 'selected' : ''; ?>>CENAREG-ANF</option>
+                                            <option value="CENAREG-3" <?php echo ($selectedOption == 'CENAREG-3') ? 'selected' : ''; ?>>CENAREG-3</option>
+                                            <option value="CENAREG-4" <?php echo ($selectedOption == 'CENAREG-4') ? 'selected' : ''; ?>>CENAREG-4</option>
+                                            <option value="CENAREG-6" <?php echo ($selectedOption == 'CENAREG-6') ? 'selected' : ''; ?>>CENAREG-6</option>
+                                            <option value="CENAREG-8" <?php echo ($selectedOption == 'CENAREG-8') ? 'selected' : ''; ?>>CENAREG-8</option>
+                                            <option value="CENAREG-9" <?php echo ($selectedOption == 'CENAREG-9') ? 'selected' : ''; ?>>CENAREG-9</option>
+                                            <option value="CENAREG-10" <?php echo ($selectedOption == 'CENAREG-10') ? 'selected' : ''; ?>>CENAREG-10</option>
+                                            <option value="CENAREG-16" <?php echo ($selectedOption == 'CENAREG-16') ? 'selected' : ''; ?>>CENAREG-16</option>
                                         </select>
 
                                 </div>
@@ -169,33 +198,32 @@
                                 </div>
                             </div>
                             </form>
-                            <%
-                                String opc2 = request.getParameter("comboC");
-                                if (opc != null && !opc.equals("Select")) {
-
-                            %>
+                            <?php
+                                 if(isset($_REQUEST['combo'])){
+                                    $opc = $_REQUEST['combo'];
+                                    if ($opc != null && $opc!=("Select")){
+                                            $opc=$_REQUEST['combo'];
+                            ?>
                             <center>
                                 <p style="font-size:20pt; color:white;"><b>____________________________________________________________________________________</b></p>
                                 <div class="row justify-content-center aj-list">
-                                    <div class="formulario" style="text-align-all: center;">
+                                    <div class="formulario" style="text-align: center;">
 
                                         <form class="color-form" method="POST" onsubmit="subirBDP(event)" >
                                             <div class=" col 12">
                                                 <div class="input-group mb-3">
                                                     <select class="form-select fondo-list letras-menu alin-letras" style="font-size: 14pt;" id="comboC" name="comboC" required>
                                                         <option value="Select">Seleccione un curso</option>
-                                                        <%  try {
-                                                                Class.forName("com.mysql.jdbc.Driver");
-                                                                Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/" + baseDatos + "?serverTimezone=UTC", "root", "1234");
-                                                                Statement consulta = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                                                                String query = "SELECT curso.IDCurso,curso.NombreCurso FROM curso WHERE Escuela='" + opc + "';";
-                                                                ResultSet rs = consulta.executeQuery(query);
-                                                                ResultSetMetaData rsmd = rs.getMetaData();
-                                                                int columnCount = rsmd.getColumnCount();
-                                                                while (rs.next()) {
-                                                                    out.println("<option value=\"" + rs.getString(1) + "\">" + rs.getString(2) + "</option>");
-                                                                }
-                                                        %>
+                                                        <?php
+                                                            $conexion = new PDO('mysql:host=127.0.0.1;dbname='.$_GET['BaseDatos'].';charset=utf8', 'root', '1234');
+                                                            $query2 = "SELECT IDCurso, NombreCurso FROM curso WHERE curso.Escuela='" . $opc . "';";
+                                                            $rs=$conexion->query($query2);
+                                                            while ($row = $rs->fetch(PDO::FETCH_ASSOC)){
+                                                                ?>
+                                                                <option value="<?php echo $row['IDCurso'] ?>"><?php echo $row['NombreCurso'] ?></option>
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -216,9 +244,9 @@
                                             <label  class="marg-entre letras-boton" for="nombre">Cantidad de egresos:</label>
                                             <input style="color: white;" type="number" id="egresos" min="1" name="egresos" required class="bordes-form">
                                             <div>
-                                            <button class="btnCloud marg-entre">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" class="icon"><path d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"></path></svg>
-                                            </button>
+                                            <div class="col-12 al-bott">
+                                                            <input type="submit" class="bn633-hover bn19" id="botonCombo" name="boton" value="Guardar información"/>
+                                                        </div>
 
                                         </form>
 
@@ -226,19 +254,13 @@
                                 </div>
                             </center>
 
+                            <?php
 
-
-                            <%
-                                } catch (SQLException ex) {
-                                    out.println("Se produjo una excepción durante la conexión:" + ex);
-                                } catch (Exception ex) {
-                                    out.println("Se produjo una excepción:" + ex);
-                                }
-                            } else if (opc != null && opc.equals("Select")) {
-                            %> 
+                            } elseif ($opc != null && $opc==("Select")) {
+                            ?> 
 
                             <div class="row table-responsive" style="text-align: right; margin-top: 50px;">
-                                <form class="esp-arr" onsubmit="Excel2(event)" method="post" enctype="multipart/form-data">
+                                <form class="esp-arr" method="post" enctype="multipart/form-data">
                                     <table style="width: 30%;" class="esp-der">
                                         <tbody>
                                             <tr>
@@ -251,7 +273,7 @@
                                                         <input class="form-control fondo-archivos margenes-deco" type="file" id="file" name="file" accept=".csv" required>
                                                         <!-- ////////////////////////////////////////////////// Boton guardar curso  /////////////////////////////////-->
                                                         <div class="col-12 al-bott">
-                                                            <input type="submit" class="bn633-hover bn19" id="botonCombo" name="boton" value="Guardar información"/>
+                                                            <input type="submit" class="bn633-hover bn19" id="botonCombo" name="boton" value="Guardar información" onclick="Excel2(event)"/>
                                                         </div>    
                                                     </div>
                                                 </th>
@@ -260,11 +282,13 @@
                                     </table>
                                 </form>
                             </div>
-                            <%
-                            } else {
-                            %>
+                            <?php
+                            }
+
+                        }else{
+                            ?>
                             <div class="row table-responsive" style="text-align: right; margin-top: 50px;">
-                                <form class="esp-arr" onsubmit="Excel2(event)" method="post" enctype="multipart/form-data">
+                                <form class="esp-arr" method="post" enctype="multipart/form-data">
                                     <table style="width: 30%;" class="esp-der">
                                         <tbody>
                                             <tr>
@@ -277,7 +301,7 @@
                                                         <input class="form-control fondo-archivos margenes-deco" type="file" id="file2" name="file" accept=".csv" required>
                                                         <!-- ////////////////////////////////////////////////// Boton guardar curso  /////////////////////////////////-->
                                                         <div class="col-12 al-bott">
-                                                            <input type="submit" class="bn633-hover bn19" id="botonCombo" name="boton" value="Guardar información"/>
+                                                            <input type="submit" class="bn633-hover bn19" id="botonCombo" name="boton" value="Guardar información" onclick="Excel2(event)"/>
                                                         </div>    
                                                     </div>
                                                 </th>
@@ -286,9 +310,10 @@
                                     </table>
                                 </form>
                             </div>
-                            <%
-                                }
-                            %>
+                            <?php
+
+                        }
+                            ?>
 
 
                         </div>

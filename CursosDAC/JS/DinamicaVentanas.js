@@ -125,13 +125,13 @@ function Excel2(event) {
     formData.append("BaseDatos", sacarBD());
     document.getElementById('loadingMessage').style.display = 'block';
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ExcelServlet", true);
+    xhr.open("POST", "./servlets/ExcelServlet.php", true);
 
     xhr.onload = function () {
         if (xhr.status === 200) {
             var respuesta = xhr.responseText.toString();
             document.getElementById('loadingMessage').style.display = 'none';
-            alert(respuesta + "DATOS SUBIDOS CORRECTAMENTE");
+            alert(respuesta);
             verA();
         } else {
             alert("Error: " + xhr.statusText);
@@ -167,7 +167,7 @@ function subirBD(event) {
         formData.append("BaseDatos", sacarBD());
         document.getElementById('loadingMessage').style.display = 'block';
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "UploadPDFServlet", true);
+        xhr.open("POST", "./servlets/UploadPDFServlet.php", true);
 
         xhr.onload = function () {
             if (xhr.status === 200) {
@@ -210,7 +210,7 @@ function subirBDP(event) {
         alert("Favor de llenar los campos faltantes");
     } else {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "UploadPeriodo", true);
+        xhr.open("POST", "./servlets/UploadPeriodo.php", true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         var data = "comboC=" + encodeURIComponent(idCurso) +
                 "&per=" + encodeURIComponent(periodo) +

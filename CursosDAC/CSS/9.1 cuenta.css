@@ -10,6 +10,7 @@ body{
 html {
     position: relative;
     min-height: 100%;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
 
@@ -115,7 +116,7 @@ a{
     font-size: 14pt;
     font-weight: bold;
     padding:5pt;
-    -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -173,7 +174,7 @@ video{
 }
 .color-letras-perf{
     color:#00ccffa9 !important;
-    font-family:Georgia, 'Times New Roman', Times, serif !important;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .fondo-perfil{
     background-color: rgba( 218, 239, 254, 0.3) !important;
@@ -188,12 +189,9 @@ video{
 }
 .ltras-perfil{
     background: -webkit-linear-gradient(aqua,white,rgb(0, 229, 255));
-    -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
 }
 .color-form{
     color: rgb(80, 255, 168) !important;
-}
-.sangria{
-    
 }
